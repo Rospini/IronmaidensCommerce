@@ -1,4 +1,13 @@
 body {
-    background-color: hotpink;
+    background-color: rgb(255, 173, 214);
     text-align: center;
+}
+
+ul {
+    list-style: none;
+}
+
+.product img {
+    max-width: 50%;
+    border-radius: 2rem;
 }
