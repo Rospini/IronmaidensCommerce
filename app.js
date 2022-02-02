@@ -21,27 +21,32 @@ app.get("/product-boat", function(request, response, next){
     const boatDetails = {
         title: "Boat",
         price: 100,
-        imgSrc: "https://m.media-amazon.com/images/I/71iLHfq8yPL._AC_SL1500_.jpg"
+        seller: {
+            name: "bob",
+            rating: 4.5
+        }
     };
     response.render("product", boatDetails);
 });
 
 app.get("/product-jet-ski", function(request, response, next){
-    const boatDetails = {
+    const jetSkiDetails = {
         title: "Jet Ski",
         price: 3000,
-        imgSrc: "https://checkyeti.imgix.net/images/prod/products/16829/jet-ski-hire-on-kamari-beach-in-santorini-kamari-beach-watersports-santorini.jpg"
+        imgSrc: "https://checkyeti.imgix.net/images/prod/products/16829/jet-ski-hire-on-kamari-beach-in-santorini-kamari-beach-watersports-santorini.jpg",
+        categories: ["leisure", "sports"]
     };
-    response.render("product", boatDetails);
+    response.render("product", jetSkiDetails);
 });
 
 app.get("/product-yatch", function(request, response, next){
-    const boatDetails = {
+    const yatchDetails = {
         title: "Yatch",
         price: 856000,
-        imgSrc: "https://yachtharbour.com/static/images/y/large_146_0d06c.jpg"
+        imgSrc: "https://yachtharbour.com/static/images/y/large_146_0d06c.jpg",
+        categories: ["luxury", "bart", "toys"]
     };
-    response.render("product", boatDetails);
+    response.render("product", yatchDetails);
 });
 
 

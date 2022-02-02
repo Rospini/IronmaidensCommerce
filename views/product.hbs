@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -7,12 +8,44 @@
     <title>Document</title>
     <link rel="stylesheet" href="/stylesheets/style.css" />
 </head>
+
 <body>
 
     <article class="product">
         <h1>{{title}}</h1>
         <h3>Price: {{price}}€</h3>
-        <img src="{{imgSrc}}" />
+
+
+        {{!-- Display Image --}}
+        {{#if imgSrc}}
+            <img src="{{imgSrc}}" alt="{{title}}" />
+        {{else}}
+            <img src="https://via.placeholder.com/700x400" alt="generic image" />
+        {{/if}}
+
+
+        {{!-- Display categories --}}
+        {{#if categories}}
+            <ul>
+                {{#each categories}}
+                    <li>
+                        <a href="/{{this}}">
+                            {{this}} 
+                        </a>
+                    </li>
+                {{/each}}
+            </ul>
+        {{/if}}
+
+        {{!-- Info from seller --}}
+        {{#if seller}}    
+            <div>
+                <h3>Seller details</h3>
+                {{seller.name}} <br />
+                {{seller.rating}}
+            </div>
+        {{/if}}
+
     </article>
 
     <nav>
@@ -22,4 +55,5 @@
     </nav>
 
 </body>
-</html> 
+
+</html>
