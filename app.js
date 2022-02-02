@@ -9,11 +9,11 @@ app.use(express.static('public'));
 
 
 app.get("/", function(request, response, next){
-    response.sendFile(__dirname + '/views/home.html');
+    response.render("home");
 });
 
 app.get("/contact", function(request, response, next){
-    response.sendFile(__dirname + '/views/contact.html');
+    response.render("contact");
 });
 
 
