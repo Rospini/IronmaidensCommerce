@@ -1,15 +1,31 @@
 const express = require("express");
+const hbs = require("hbs");
 const app = express();
 
 app.set("views", __dirname + "/views");
 app.set("view engine", "hbs");
 
+hbs.registerPartials(__dirname + "/views/partials");
 
 app.use(express.static('public'));
 
 
 app.get("/", function(request, response, next){
-    response.render("home");
+    const products = [
+        {
+            title: "Boat",
+            price: 100
+        }, 
+        {
+            title: "Jet Ski",
+            price: 3000
+        }, 
+        {
+            title: "Yatch",
+            price: 856000
+        }, 
+    ];
+    response.render("home", {products: products});
 });
 
 app.get("/contact", function(request, response, next){
