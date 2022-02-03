@@ -2,6 +2,9 @@ const express = require("express");
 const hbs = require("hbs");
 const app = express();
 
+const mongoose = require("mongoose");
+const Product = require("./models/Product.model");
+
 app.set("views", __dirname + "/views");
 app.set("view engine", "hbs");
 
@@ -10,22 +13,19 @@ hbs.registerPartials(__dirname + "/views/partials");
 app.use(express.static('public'));
 
 
+// connect to DB
+mongoose
+  .connect('mongodb://localhost/ecommerceApp')
+  .then(x => console.log(`Connected to Mongo! Database name: "${x.connections[0].name}"`))
+  .catch(err => console.error('Error connecting to mongo', err));
+
+
 app.get("/", function(request, response, next){
-    const products = [
-        {
-            title: "Boat",
-            price: 100
-        }, 
-        {
-            title: "Jet Ski",
-            price: 3000
-        }, 
-        {
-            title: "Yatch",
-            price: 856000
-        }, 
-    ];
-    response.render("home", {products: products});
+    Product.find()
+        .then( (products) => {
+            response.render("home", {products: products});
+        })
+        .catch( error => console.log("error getting data from DB", error));
 });
 
 app.get("/contact", function(request, response, next){
@@ -64,6 +64,7 @@ app.get("/product-yatch", function(request, response, next){
     };
     response.render("product", yatchDetails);
 });
+
 
 
 app.listen(3000, () => { console.log("server listening....");});
