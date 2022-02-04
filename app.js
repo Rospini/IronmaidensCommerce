@@ -1,4 +1,3 @@
-CHANGED!
 
 const express = require("express");
 const hbs = require("hbs");
@@ -13,6 +12,7 @@ app.set("view engine", "hbs");
 hbs.registerPartials(__dirname + "/views/partials");
 
 app.use(express.static('public'));
+
 
 
 // connect to DB
@@ -35,7 +35,11 @@ app.get("/contact", function (req, res, next) {
     res.render("contact");
 });
 
-
+app.get("/search", async (req, res, next)=>{
+    const searchInput = req.query.maxPrice;
+    const retrievedData = await Product.price(searchInput)
+    Product.findByPrice(req.params.productId)
+}
 
 // example url: http://localhost:3000/products/luxury-yatch/61fbd85a1f01432545d1599b/
 
