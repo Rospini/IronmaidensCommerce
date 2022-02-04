@@ -34,13 +34,15 @@ app.get("/contact", function (request, response, next) {
 });
 
 
-app.get("/products/:productId", function (request, response, next) {
+// example url: http://localhost:3000/products/luxury-yatch/61fbd85a1f01432545d1599b/
+
+app.get("/products/:productTitle/:productId", function (request, response, next) {
     Product.findById(request.params.productId)
         .then(productFromDB => {
             response.render("product", productFromDB);
         })
         .catch(error => console.log("error getting data from DB", error));
-});
+})
 
 
 app.listen(3000, () => { console.log("server listening...."); });
