@@ -28,50 +28,19 @@ app.get("/", function (request, response, next) {
         .catch(error => console.log("error getting data from DB", error));
 });
 
+
 app.get("/contact", function (request, response, next) {
     response.render("contact");
 });
 
 
-
-
-app.get("/:productTitle", function (request, response, next) {
-    Product.findOne({title: request.params.productTitle})
+app.get("/products/:productId", function (request, response, next) {
+    Product.findById(request.params.productId)
         .then(productFromDB => {
             response.render("product", productFromDB);
         })
         .catch(error => console.log("error getting data from DB", error));
 });
-
-
-
-// app.get("/product-boat", function (request, response, next) {
-//     Product.findOne({ title: "basic boat" })
-//         .then(productFromDB => {
-//             response.render("product", productFromDB);
-//         })
-//         .catch(error => console.log("error getting data from DB", error));
-// });
-
-
-// app.get("/product-jet-ski", function (request, response, next) {
-//     Product.findOne({ title: "jet ski" })
-//         .then(productFromDB => {
-//             console.log(productFromDB);
-//             response.render("product", productFromDB);
-//         })
-//         .catch(error => console.log("error getting data from DB", error));
-// });
-
-
-// app.get("/product-yatch", function (request, response, next) {
-//     Product.findOne({ title: "yatch" })
-//         .then(productFromDB => {
-//             response.render("product", productFromDB);
-//         })
-//         .catch(error => console.log("error getting data from DB", error));
-// });
-
 
 
 app.listen(3000, () => { console.log("server listening...."); });
