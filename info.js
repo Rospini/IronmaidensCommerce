@@ -1,5 +1,6 @@
 const mongoose = require("mongoose");
 const Product = require("./models/Product.model");
+
 mongoose
 .connect('mongodb://localhost:27017/ecommerceApp')
 .then(x => console.log(`Connected to Mongo! Database name: "${x.connections[0].name}"`))
