@@ -20,26 +20,27 @@ mongoose
     .catch(err => console.error('Error connecting to mongo', err));
 
 
-app.get("/", function (request, response, next) {
+app.get("/", function (req, res, next) {
     Product.find()
         .then((products) => {
-            response.render("home", { products: products });
+            res.render("home", { products: products });
         })
         .catch(error => console.log("error getting data from DB", error));
 });
 
 
-app.get("/contact", function (request, response, next) {
-    response.render("contact");
+app.get("/contact", function (req, res, next) {
+    res.render("contact");
 });
+
 
 
 // example url: http://localhost:3000/products/luxury-yatch/61fbd85a1f01432545d1599b/
 
-app.get("/products/:productTitle/:productId", function (request, response, next) {
-    Product.findById(request.params.productId)
+app.get("/products/:productTitle/:productId", function (req, res, next) {
+    Product.findById(req.params.productId)
         .then(productFromDB => {
-            response.render("product", productFromDB);
+            res.render("product", productFromDB);
         })
         .catch(error => console.log("error getting data from DB", error));
 })
