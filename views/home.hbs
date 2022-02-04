@@ -1,6 +1,19 @@
 <h1>Home</h1>
 <img src="/images/iron_maidens.jpg" />
 
+<section id="product-search">
+    <form action="/search" method="GET" >
+
+        <label>
+            Max Price:
+            <input type="number" name="maxPrice" />
+        </label>
+
+        <button type="submit">Search</button>
+
+    </form>
+</section>
+
 <section id="product-list">
     {{#each products}}
         {{> productSummary this }}
